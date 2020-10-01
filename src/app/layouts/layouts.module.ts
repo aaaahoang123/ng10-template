@@ -5,10 +5,12 @@ import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {RouterModule} from '@angular/router';
 import {WithSidebarLayoutComponent} from './with-sidebar-layout/with-sidebar-layout.component';
 import {CommonModule} from '@angular/common';
+import { MiddleContentLayoutComponent } from './middle-content-layout/middle-content-layout.component';
 
 @NgModule({
   declarations: [
-    WithSidebarLayoutComponent
+    WithSidebarLayoutComponent,
+    MiddleContentLayoutComponent
   ],
   imports: [
     CommonModule,

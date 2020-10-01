@@ -1,19 +1,19 @@
 import {Injectable} from '@angular/core';
 import { Store } from '@ngrx/store';
-import {AppState} from './app.state';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {appUserLoaded, initialApplication} from './auth.reducer';
+import {AppState} from '../../app.state';
+import {Actions, createEffect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
+import {appUserLoaded} from './auth.reducer';
 import {exhaustMap, map} from 'rxjs/operators';
-import {AuthService} from './modules/shared/services/auth/auth.service';
+import {AuthService} from './auth.service';
 
 @Injectable()
-export class AuthEffect {
+export class AuthEffects {
   onInitialApp$ = createEffect(() =>
     this.action$.pipe(
-      ofType(initialApplication),
+      ofType(ROOT_EFFECTS_INIT),
       exhaustMap(() =>
         this.authService.userData().pipe(
-          map(res => appUserLoaded(res.data))
+          map(res => appUserLoaded({payload: res.data}))
         )
       )
     )

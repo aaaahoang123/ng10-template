@@ -14,6 +14,7 @@ import {LayoutsModule} from './layouts/layouts.module';
 import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
 import {LoadingBarModule} from '@ngx-loading-bar/core';
 import {AppStoreModule} from './app-store.module';
+import {AuthModule} from './modules/auth/auth.module';
 
 registerLocaleData(vi);
 
@@ -31,12 +32,9 @@ registerLocaleData(vi);
     AppStoreModule,
 
     LoadingBarHttpClientModule,
-
-    // // for Router use:
-    // LoadingBarRouterModule,
-
-    // for Core use:
     LoadingBarModule,
+
+    AuthModule
   ],
   providers: [{ provide: NZ_I18N, useValue: vi_VN }],
   bootstrap: [AppComponent]

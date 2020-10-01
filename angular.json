@@ -130,5 +130,8 @@
       }
     }
   },
-  "defaultProject": "new-admin"
+  "defaultProject": "new-admin",
+  "cli": {
+    "analytics": "e12c4d0e-9bf5-4647-ae44-4dbfd4334cec"
+  }
 }

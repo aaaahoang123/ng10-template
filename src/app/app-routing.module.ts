@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 import {WithSidebarLayoutComponent} from './layouts/with-sidebar-layout/with-sidebar-layout.component';
+import {MiddleContentLayoutComponent} from './layouts/middle-content-layout/middle-content-layout.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,14 @@ const routes: Routes = [
       icon: 'form',
       title: 'Form'
     }
+  },
+  {
+    path: 'auth',
+    component: MiddleContentLayoutComponent,
+    data: {
+      display: false
+    },
+    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   }
 ];
 

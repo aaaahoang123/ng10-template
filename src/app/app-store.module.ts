@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import {StoreModule} from '@ngrx/store';
-import {authReducer} from './auth.reducer';
+import {authReducer} from './modules/auth/auth.reducer';
 import {EffectsModule} from '@ngrx/effects';
-import {AuthEffect} from './auth.effect';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
+import {AuthEffects} from './modules/auth/auth.effects';
 
 @NgModule({
   declarations: [],
@@ -10,9 +12,13 @@ import {AuthEffect} from './auth.effect';
     StoreModule.forRoot({
       auth: authReducer
     }),
-    EffectsModule.forRoot([AuthEffect])
+    EffectsModule.forRoot([AuthEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   exports: [StoreModule, EffectsModule],
-  providers: [ AuthEffect ]
+  providers: []
 })
 export class AppStoreModule { }
