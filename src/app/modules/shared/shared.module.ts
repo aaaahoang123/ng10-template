@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {AuthService} from './services/auth/auth.service';
-import {HttpClientModule} from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
+
+const sharedModules = [
+  CommonModule,
+  ReactiveFormsModule
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    HttpClientModule
-  ],
-  providers: [
-    AuthService
-  ],
-  exports: []
+  imports: sharedModules,
+  exports: sharedModules
 })
 export class SharedModule { }

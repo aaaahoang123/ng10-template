@@ -1,0 +1,25 @@
+<h2>Xác thực 2 bước</h2>
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-control>
+      <nz-input-group nzPrefixIcon="lock">
+        <input nz-input placeholder="Nhập mã xác thực" formControlName="secret">
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+<!--  <div nz-row class="login-form-margin">-->
+<!--    <div nz-col [nzSpan]="12">-->
+<!--      <label nz-checkbox formControlName="remember">-->
+<!--        <span>Remember me</span>-->
+<!--      </label>-->
+<!--    </div>-->
+<!--    <div nz-col [nzSpan]="12">-->
+<!--      <a class="login-form-forgot">Forgot password</a>-->
+<!--    </div>-->
+<!--  </div>-->
+  <button nz-button class="login-form-button login-form-margin"
+          [nzType]="'primary'"
+          [nzLoading]="loading$ | ngrxPush"
+  >Xác thực</button>
+  Hoặc <a [href]="domain + '/authentication'"> Đăng nhập lại </a>
+</form>
