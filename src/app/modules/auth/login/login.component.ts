@@ -1,5 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup} from '@angular/forms';
+import {createForm, dirtyForm, logout} from '../../../common';
+import {LoginForm} from './login.form';
+import {Observable} from 'rxjs';
+import {select, Store} from '@ngrx/store';
+import {AppState} from '../../../app.state';
+import {login} from '../auth.reducer';
+import {ActivatedRoute} from '@angular/router';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -9,23 +17,38 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   validateForm!: FormGroup;
+  domain = environment.domain;
+  loading$: Observable<boolean>;
 
-  submitForm(): void {
-    // tslint:disable-next-line:forin
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[i].markAsDirty();
-      this.validateForm.controls[i].updateValueAndValidity();
-    }
+  constructor(
+    private readonly store: Store<AppState>,
+    private readonly route: ActivatedRoute
+  ) {
   }
 
-  constructor(private fb: FormBuilder) {}
-
   ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true]
-    });
+    if (!this.route.snapshot.queryParams.hashed_token) {
+      logout();
+    }
+
+    this.validateForm = createForm(new LoginForm()) as FormGroup;
+
+    this.loading$ = this.store.pipe(
+      select(state => state.auth.loginFormLoading)
+    );
+  }
+
+  submitForm(): void {
+    dirtyForm(this.validateForm);
+    if (this.validateForm.invalid) {
+      return;
+    }
+    this.store.dispatch(login({
+      payload: {
+        ...this.validateForm.value,
+        hashed_token: this.route.snapshot.queryParams.hashed_token
+      }
+    }));
   }
 
 }

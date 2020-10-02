@@ -8,6 +8,7 @@ import {NzInputModule} from 'ng-zorro-antd/input';
 import {NzButtonModule} from 'ng-zorro-antd/button';
 import {NzCheckboxModule} from 'ng-zorro-antd/checkbox';
 import {RouterModule, Routes} from '@angular/router';
+import {ReactiveComponentModule} from '@ngrx/component';
 
 const routes: Routes = [
   {
@@ -15,24 +16,22 @@ const routes: Routes = [
     component: LoginComponent,
     data: {
       title: 'Đăng nhập',
-      display: true
+      display: false
     }
   }
 ];
 
 @NgModule({
   declarations: [LoginComponent],
-  imports: [
-    SharedModule,
-    NzFormModule,
-    NzButtonModule,
-    NzCheckboxModule,
-    // EffectsModule.forRoot(
-    //   [AuthEffects]
-    // ),
-    NzInputModule,
-    RouterModule.forChild(routes)
-  ],
+    imports: [
+        SharedModule,
+        NzFormModule,
+        NzButtonModule,
+        NzCheckboxModule,
+        NzInputModule,
+        RouterModule.forChild(routes),
+        ReactiveComponentModule,
+    ],
   providers: [
     AuthEffects
   ]

@@ -100,3 +100,10 @@ export function createForm(input: any): AbstractControl|null {
   return null;
 }
 
+export function dirtyForm(form: FormGroup): void {
+  Object.keys(form.controls).forEach(field => {
+    form.get(field).markAsDirty();
+    form.get(field).updateValueAndValidity();
+  });
+}
+

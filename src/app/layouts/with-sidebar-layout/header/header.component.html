@@ -1,0 +1,29 @@
+<div class="header-action" *ngrxLet="user$; let user">
+<!--  <app-list-processing-transactions></app-list-processing-transactions>-->
+<!--  <app-list-notification></app-list-notification>-->
+  <button nz-button
+          nz-dropdown
+          class="header-action-item"
+          nzPlacement="bottomRight"
+          nzTrigger="hover"
+          [nzDropdownMenu]="userDropDown"
+  >
+    <nz-avatar nzIcon="user"
+               [nzSrc]="user?.avatar_url"
+               nzSize="small"
+               class="mr-2"
+    ></nz-avatar> {{user?.username}}
+  </button>
+  <nz-dropdown-menu #userDropDown>
+    <ul nz-menu>
+      <li nz-menu-item>
+        <a [routerLink]="['/' + RouterEnum.employees, RouterEnum.edit]"
+           [queryParams]="{id: user?.id}"
+        >{{user?.username}}</a>
+      </li>
+      <li nz-menu-item>
+        <a (click)="logout()">Đăng xuất</a>
+      </li>
+    </ul>
+  </nz-dropdown-menu>
+</div>

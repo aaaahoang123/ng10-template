@@ -6,11 +6,17 @@ import {RouterModule} from '@angular/router';
 import {WithSidebarLayoutComponent} from './with-sidebar-layout/with-sidebar-layout.component';
 import {CommonModule} from '@angular/common';
 import { MiddleContentLayoutComponent } from './middle-content-layout/middle-content-layout.component';
+import { HeaderComponent } from './with-sidebar-layout/header/header.component';
+import {NzButtonModule} from 'ng-zorro-antd/button';
+import {NzDropDownModule} from 'ng-zorro-antd/dropdown';
+import {NzAvatarModule} from 'ng-zorro-antd/avatar';
+import {ReactiveComponentModule} from '@ngrx/component';
 
 @NgModule({
   declarations: [
     WithSidebarLayoutComponent,
-    MiddleContentLayoutComponent
+    MiddleContentLayoutComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -18,6 +24,10 @@ import { MiddleContentLayoutComponent } from './middle-content-layout/middle-con
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
+    NzButtonModule,
+    NzDropDownModule,
+    NzAvatarModule,
+    ReactiveComponentModule
   ]
 })
 export class LayoutsModule { }

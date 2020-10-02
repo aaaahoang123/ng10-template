@@ -16,16 +16,11 @@ export class AuthService {
 
   login(value): Observable<Rest<User>> {
     return this.http
-      .post<Rest<User>>(`${environment.baseUrl}/get-access-token`, value);
-      // .pipe(
-      //   map(res => {
-      //     localStorage.setItem(ACCESS_TOKEN_SECRET_KEY, res.data.access_token);
-      //     return res.data;
-      //   }),
-      // );
+      .post<Rest<User>>(`${environment.apiUrl}/get-access-token`, value);
   }
 
   userData(): Observable<Rest<User>> {
-    return this.http.get<Rest<User>>(`${environment.baseUrl}/account`);
+    return this.http
+      .get<Rest<User>>(`${environment.baseUrl}/account`);
   }
 }

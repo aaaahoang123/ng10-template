@@ -1,13 +1,20 @@
-import {PayloadAction} from './payload-action';
 import createNextState, {Draft, isDraft, isDraftable} from 'immer';
+import {Action, ActionReducer, createAction} from '@ngrx/store';
 
-declare type ImmutableCaseReducer<S extends any, A extends any> = (state: S | Draft<S>, action: PayloadAction<A>) => S;
-declare type MutableCaseReducer<S extends any, A extends any> = (state: S, action: PayloadAction<A>) => void;
+export interface Payload<T = any, E = any> {
+  payload?: T;
+  extra?: E;
+  error?: any;
+}
 
-declare type CaseReducer<S extends any, A extends any> = ImmutableCaseReducer<S, A> | MutableCaseReducer<S, A>;
+export declare type PayloadAction<T = any, E = any> = Payload<T, E> & Action;
 
-export function useImmer<S extends any, A extends any>(rawReducer: CaseReducer<S, A>): ImmutableCaseReducer<S, A> {
-  return (state: S, action: PayloadAction<A>) => {
+declare type MutableActionReducer<S extends any, A extends PayloadAction> = (state: S, action: A) => void;
+
+declare type CaseReducer<S extends any, A extends PayloadAction> = MutableActionReducer<S, A> | ActionReducer<S, A>;
+
+export function useImmer<S extends any, A extends PayloadAction>(rawReducer: CaseReducer<S, A>): ActionReducer<S, A> {
+  return (state: S, action: A) => {
     if (rawReducer) {
       if (isDraft(state)) {
         // If it's already a draft, we must already be inside a `createNextState` call,
@@ -49,3 +56,5 @@ export function useImmer<S extends any, A extends any>(rawReducer: CaseReducer<S
     return state;
   };
 }
+
+export const doNothingAction = createAction('[Common] DoNothing');
