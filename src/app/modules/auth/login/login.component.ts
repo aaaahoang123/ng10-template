@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import {createForm, dirtyForm, logout} from '../../../common';
+import {createForm, dirtyForm, logout} from '../../../core';
 import {LoginForm} from './login.form';
 import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';

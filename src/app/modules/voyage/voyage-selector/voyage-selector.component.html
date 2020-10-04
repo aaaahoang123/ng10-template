@@ -1,0 +1,17 @@
+<nz-select
+  class="w-100"
+  [ngModel]="model"
+  nzPlaceHolder="Chọn tuyến đường"
+  [nzAllowClear]="nzAllowClear"
+  [nzShowSearch]="true"
+  (ngModelChange)="onSelect($event)"
+  *ngrxLet="voyage$; let voyages"
+>
+  <nz-option [nzValue]="voyage.id"
+             [nzLabel]="voyage.from + '-' + voyage.to"
+             nzCustomContent
+             *ngFor="let voyage of voyages"
+  >
+    <app-voyage-label [itemId]="voyage.id"></app-voyage-label>
+  </nz-option>
+</nz-select>

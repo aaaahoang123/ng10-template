@@ -1,0 +1,13 @@
+<nz-select [nzPlaceHolder]="nzPlaceHolder || 'Chọn trạng thái'"
+           class="w-100"
+           [nzAllowClear]="nzAllowClear"
+           [nzDisabled]="isDisabled"
+           [nzSize]="nzSize"
+           [ngModel]="model"
+           (ngModelChange)="onModelChange($event)"
+>
+  <nz-option [nzValue]="option.value"
+             [nzLabel]="(enumPrefix + option.label) | translate"
+             *ngFor="let option of (status | enumToSelectEntries)"
+  ></nz-option>
+</nz-select>

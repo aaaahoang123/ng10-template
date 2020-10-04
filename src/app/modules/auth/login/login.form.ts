@@ -1,4 +1,4 @@
-import {UseValidators} from '../../../common';
+import {UseValidators} from '../../../core';
 import {Validators} from '@angular/forms';
 
 export class LoginForm {

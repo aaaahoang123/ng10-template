@@ -11,12 +11,17 @@ import {NzButtonModule} from 'ng-zorro-antd/button';
 import {NzDropDownModule} from 'ng-zorro-antd/dropdown';
 import {NzAvatarModule} from 'ng-zorro-antd/avatar';
 import {ReactiveComponentModule} from '@ngrx/component';
+import { TitleHeaderComponent } from './with-sidebar-layout/title-header/title-header.component';
+import {NzPageHeaderModule} from 'ng-zorro-antd/page-header';
+import { SidebarComponent } from './with-sidebar-layout/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     WithSidebarLayoutComponent,
     MiddleContentLayoutComponent,
-    HeaderComponent
+    HeaderComponent,
+    TitleHeaderComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +32,7 @@ import {ReactiveComponentModule} from '@ngrx/component';
     NzButtonModule,
     NzDropDownModule,
     NzAvatarModule,
+    NzPageHeaderModule,
     ReactiveComponentModule
   ]
 })

@@ -9,7 +9,7 @@ import {of} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
 import {NzNotificationService} from 'ng-zorro-antd/notification';
-import {doNothingAction} from '../../common';
+import {doNothingAction} from '../../core';
 
 @Injectable()
 export class AuthEffects {

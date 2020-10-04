@@ -16,7 +16,7 @@ import {LoadingBarModule} from '@ngx-loading-bar/core';
 import {AppStoreModule} from './app-store.module';
 import {AuthModule} from './modules/auth/auth.module';
 import {NZ_CONFIG, NzConfig} from 'ng-zorro-antd/core/config';
-import {HttpClientInterceptor} from './common';
+import {HttpClientInterceptor} from './core';
 import {NzNotificationModule, NzNotificationService} from 'ng-zorro-antd/notification';
 
 registerLocaleData(vi);

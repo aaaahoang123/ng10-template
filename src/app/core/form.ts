@@ -4,6 +4,9 @@ import cloneDeep from 'lodash/cloneDeep';
 import isObject from 'lodash/isObject';
 import { ValidatorFn } from '@angular/forms';
 import 'reflect-metadata';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 export function setValueToForm(form: AbstractControl, data: any, setPristine = false): AbstractControl {
   if (form instanceof FormControl) {
@@ -98,6 +101,29 @@ export function createForm(input: any): AbstractControl|null {
     return createControl(input);
   }
   return null;
+}
+
+export function createSyncRouterParamsForm(
+  input: any,
+  router: Router,
+  activatedRoute: ActivatedRoute,
+  takeUntil$: Subject<any>
+): AbstractControl|null {
+  const form = createForm(input);
+  if (form) {
+    form.valueChanges
+      .pipe(takeUntil(takeUntil$))
+      .subscribe(queryParams => router.navigate(
+        [],
+        {
+          relativeTo: activatedRoute,
+          queryParams,
+          queryParamsHandling: 'merge', // remove to replace all query params by provided
+        })
+      );
+  }
+
+  return form;
 }
 
 export function dirtyForm(form: FormGroup): void {

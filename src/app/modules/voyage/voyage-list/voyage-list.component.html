@@ -1,0 +1,58 @@
+<app-voyage-list-search-bar></app-voyage-list-search-bar>
+<ng-template #totalTemplate let-total>Tổng cộng {{total}} bản ghi</ng-template>
+<ng-container *ngrxLet="params$; let params">
+    <ng-container *ngrxLet="meta$; let meta">
+      <nz-table *ngrxLet="data$; let datas"
+                [nzData]="datas"
+                nzShowPagination
+                nzFrontPagination="false"
+                [nzScroll]="{x: '800px'}"
+                [nzPageIndex]="params.page"
+                [nzTotal]="meta.total"
+                [nzPageSize]="params.limit"
+                [nzSize]="'small'"
+                nzShowSizeChanger
+                nzShowQuickJumper
+                [nzShowTotal]="totalTemplate"
+                (nzPageSizeChange)="onPageSizeChange($event)"
+                (nzPageIndexChange)="onPageChange($event)"
+      >
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Điểm đi</th>
+          <th>Điểm đến</th>
+          <th>Chặng con</th>
+          <th>Trạng thái</th>
+          <th>Thao tác</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of datas; let i = index">
+          <td>{{data.id}}</td>
+          <td>{{data.from}}</td>
+          <td>{{data.to}}</td>
+          <td>
+            <app-voyage-children-view [parentId]="data.id"></app-voyage-children-view>
+          </td>
+          <td>
+            <app-common-status-label [status]="data.status"></app-common-status-label>
+          </td>
+          <td>
+            <a [routerLink]="['..', 'edit', data.id]"><i nz-icon nzType="edit"></i> Sửa</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a nz-popconfirm
+               [nzPopconfirmTitle]="'Bạn thực sự muốn xóa tuyến đường ' + data.from + ' - ' + data.to + ' ?'"
+               (nzOnConfirm)="doDelete(data.id)"
+               class="color-error"
+               *ngIf="data.status !== CommonStatus.INACTIVE"
+            >
+              <i nz-icon [nzType]="data.isDeleting ? 'loading' : 'delete'"></i> Xóa
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </ng-container>
+</ng-container>
+

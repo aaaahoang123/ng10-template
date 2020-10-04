@@ -1,5 +1,5 @@
 import { IVehicleCategory } from './vehicle-category.interface';
-import { IVoyages } from './voyages';
+import { Voyage } from './voyages';
 export interface IVehicleTicket {
   id: number;
   name: string;
@@ -9,7 +9,7 @@ export interface IVehicleTicket {
   vehicle_category_id: number;
   vehicle_category: IVehicleCategory;
   voyage_id: number;
-  voyage: IVoyages;
+  voyage: Voyage;
   created_at: string;
   updated_at: string;
   status: number;

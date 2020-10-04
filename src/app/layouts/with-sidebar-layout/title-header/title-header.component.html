@@ -1,0 +1,11 @@
+<nz-page-header nzBackIcon [nzTitle]="pageTitle" class="page-header" (nzBack)="back()">
+  <nz-page-header-extra *ngIf="navigateButtons">
+    <a nz-button
+       *ngFor="let btn of navigateButtons"
+       [routerLink]="btn.navigate"
+       [nzType]="btn.nzType || 'primary'"
+    >
+      <i nz-icon [nzType]="btn.icon || 'plus'"></i> {{btn.title}}
+    </a>
+  </nz-page-header-extra>
+</nz-page-header>

@@ -1,6 +1,6 @@
 import {createAction, createReducer, on, props} from '@ngrx/store';
 import {User} from '../../models/user.interface';
-import { Payload, PayloadAction, useImmer } from '../../common';
+import { Payload, PayloadAction, useImmer } from '../../core';
 import {LoginForm} from './login/login.form';
 import {JwtPayload} from '../../models/jwt-payload.interface';
 import {JwtHelperService} from '@auth0/angular-jwt';

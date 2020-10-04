@@ -1,13 +1,13 @@
-import {ICity} from './city.interface';
-import {IDistrict} from './district.interface';
+import {City} from './city.interface';
+import {District} from './district.interface';
 
-export interface IStreet {
+export interface Street {
     id: number;
     _name: string;
     _prefix: string;
     _province_id: number;
     _district_id: number;
     tag: string;
-    city?: ICity;
-    district?: IDistrict;
+    city?: City;
+    district?: District;
 }

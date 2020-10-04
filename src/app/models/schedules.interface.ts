@@ -1,5 +1,5 @@
 import { IVehicle } from './vehicle.interface';
-import { IVoyages } from './voyages';
+import { Voyage } from './voyages';
 import { User } from './user.interface';
 import {IVehicleTicket} from './vehicle-ticket.interface';
 import {IPickupLocation} from './pickup-location.interface';
@@ -19,8 +19,8 @@ export interface ISchedules {
   vehicle_id: number;
   vehicle: IVehicle;
   voyage_id: number;
-  voyage: IVoyages;
-  voyages: IVoyages[];
+  voyage: Voyage;
+  voyages: Voyage[];
   driver_id: number;
   driver: User;
   created_by: number;

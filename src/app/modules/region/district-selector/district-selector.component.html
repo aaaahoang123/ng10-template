@@ -1,0 +1,21 @@
+<nz-select
+  class="w-100"
+  [ngModel]="model"
+  (ngModelChange)="onModelChange($event)"
+  nzPlaceHolder="Chọn quận/huyện"
+  [nzAllowClear]="allowClear"
+  [nzShowSearch]="true"
+  nzMode="default"
+  [nzDisabled]="isDisabled || !cityId"
+  *ngrxLet="districts$; let districts"
+>
+<!--  <ng-container *ngIf="!isLoading">-->
+    <nz-option [nzValue]="o.id"
+               [nzLabel]="(o._prefix + ' ' || '') + o._name"
+               *ngFor="let o of districts"></nz-option>
+<!--  </ng-container>-->
+
+<!--  <nz-option *ngIf="isLoading" nzCustomContent nzDisabled>-->
+<!--    <i nz-icon nzType="loading"></i> Đang tải dữ liệu...-->
+<!--  </nz-option>-->
+</nz-select>

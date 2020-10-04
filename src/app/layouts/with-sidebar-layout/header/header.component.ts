@@ -3,8 +3,7 @@ import {select, Store} from '@ngrx/store';
 import {AppState} from '../../../app.state';
 import {Observable} from 'rxjs';
 import {User} from '../../../models/user.interface';
-import {RouterEnum} from '../../../common/router.enum';
-import {logout} from '../../../common';
+import {logout, RouterEnum} from '../../../core';
 
 @Component({
   selector: 'app-header',

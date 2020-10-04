@@ -1,0 +1,17 @@
+<nz-select
+  class="w-100"
+  nzPlaceHolder="Chọn tỉnh/thành phố"
+  [nzAllowClear]="allowClear"
+  [nzShowSearch]="true"
+  [ngModel]="model"
+  (ngModelChange)="onModelChange($event)"
+  *ngrxLet="cities$; let cities"
+>
+  <nz-option [nzValue]="city.id"
+             [nzLabel]="city._name"
+             nzCustomContent
+             *ngFor="let city of cities"
+  >
+    [{{city._code}}] {{city._name}}
+  </nz-option>
+</nz-select>

@@ -1,0 +1,10 @@
+<nz-collapse [nzBordered]="false" *ngrxLet="childrenIds$; let childrenIds">
+  <nz-collapse-panel class="tiny-collapse"
+                     [nzHeader]="'Chặng con'"
+                     [nzActive]="false"
+  >
+    <ng-container *ngFor="let child of childrenIds">
+      <p>- <app-voyage-label [itemId]="child"></app-voyage-label></p>
+    </ng-container>
+  </nz-collapse-panel>
+</nz-collapse>

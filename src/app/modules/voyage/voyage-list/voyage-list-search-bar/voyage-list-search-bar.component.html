@@ -1,0 +1,30 @@
+<form nz-form
+      [formGroup]="paramsForm"
+      class="w-100"
+>
+  <div nz-row nzGutter="6" class="mb-5 mt-5">
+    <div nz-col [nzXs]="24" [nzMd]="12" [nzLg]="8" class="mb-2">
+      <app-city-selector [ngModel]="cityId"
+                         [ngModelOptions]="{standalone: true}"
+                         (ngModelChange)="onSelectCity($event)"
+                         allowClear
+      ></app-city-selector>
+    </div>
+    <div nz-col [nzXs]="24" [nzMd]="12" [nzLg]="8" class="mb-2">
+      <app-district-selector [ngModel]="districtId"
+                             [disabled]="!cityId"
+                             allowClear
+                             [cityId]="cityId"
+                             [ngModelOptions]="{standalone: true}"
+                             (ngModelChange)="onSelectDistrict($event)"
+      ></app-district-selector>
+    </div>
+
+    <div nz-col [nzXs]="24" [nzMd]="12" [nzLg]="8" class="mb-2">
+      <app-status-selector [status]="CommonStatus"
+                           enumName="CommonStatus"
+                           formControlName="status"
+      ></app-status-selector>
+    </div>
+  </div>
+</form>

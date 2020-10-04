@@ -12,3 +12,6 @@ export * from './objects';
 export * from './merge-with-default';
 export * from './form';
 export * from './stores';
+export * from './router.enum';
+export * from './simple-control-value-accessor';
+export * from './is-duplicate-params';

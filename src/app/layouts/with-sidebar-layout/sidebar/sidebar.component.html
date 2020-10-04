@@ -1,0 +1,53 @@
+<div class="sidebar-logo">
+  <a href="https://ng.ant.design/" target="_blank">
+    <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+    <h1>Ant Design Of Angular</h1>
+  </a>
+</div>
+<ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+  <ng-container *ngFor="let config of router.config">
+    <ng-template [ngTemplateOutlet]="menuRender"
+                 [ngTemplateOutletContext]="{route: config, prefix: ''}"
+    ></ng-template>
+  </ng-container>
+
+
+  <ng-template #menuRender let-route="route" let-prefix="prefix">
+    <ng-container *ngIf="route.data?.display">
+
+      <ng-container *ngIf="route.data?.menuType === MenuType.NONE && (route.children?.length || route._loadedConfig?.routes?.length)">
+          <ng-template ngFor let-child [ngForOf]="route.children || route._loadedConfig?.routes">
+            <ng-template [ngTemplateOutlet]="menuRender"
+                         [ngTemplateOutletContext]="{route: child, prefix: prefix + (route.path ? ('/' + route.path) : '')}"
+            ></ng-template>
+          </ng-template>
+
+      </ng-container>
+
+      <ng-container *ngIf="route.data?.menuType === MenuType.SUBMENU && (route.children?.length || route._loadedConfig?.routes.length)">
+        <li nz-submenu
+            nzOpen
+            [nzTitle]="route?.data?.title"
+            [nzIcon]="route?.data?.icon || ''"
+        >
+          <ul>
+            <ng-template ngFor let-child [ngForOf]="route.children || route._loadedConfig?.routes">
+              <ng-template [ngTemplateOutlet]="menuRender"
+                           [ngTemplateOutletContext]="{route: child, prefix: prefix + (route.path ? ('/' + route.path) : '')}"
+              ></ng-template>
+            </ng-template>
+          </ul>
+        </li>
+      </ng-container>
+
+      <ng-container *ngIf="!route.data?.menuType || route.data?.menuType === MenuType.ITEM">
+        <li nz-menu-item
+            nzMatchRouter
+        >
+          <i *ngIf="route.data?.icon" [nzType]="route.data?.icon" nz-icon></i>
+          <span><a [routerLink]="prefix + (route.path ? ('/' + route.path) : '')">{{route.data?.title || ''}}</a></span>
+        </li>
+      </ng-container>
+    </ng-container>
+  </ng-template>
+</ul>

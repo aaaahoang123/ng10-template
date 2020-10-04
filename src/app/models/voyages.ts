@@ -1,6 +1,6 @@
 import {IScheduleVoyage} from './schedule-voyage.interface';
 
-export interface IVoyages {
+export interface Voyage {
   id: number;
   from_id: number;
   from: string;
@@ -11,7 +11,7 @@ export interface IVoyages {
   status: number;
   status_title: string;
   parent: number;
-  children: IVoyages[];
+  children?: Voyage[];
   ordinal_number: number;
   pivot?: IScheduleVoyage;
   from_province_id: number;
