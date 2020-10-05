@@ -4,7 +4,7 @@
  * Date: 10/9/2019
  * Time: 5:32 PM
  */
-import {IVehicleCategory} from './vehicle-category.interface';
+import {VehicleCategory} from './vehicle-category.interface';
 
 export enum MaintenancePlanType {
   KILOMETER_PLAN = 1,
@@ -21,7 +21,7 @@ export interface IMaintenancePlan {
     updated_at: string;
     status: number;
     status_title: string;
-    vehicle_categories: IVehicleCategory[];
+    vehicle_categories: VehicleCategory[];
     type: MaintenancePlanType;
     isDeleting?: boolean;
 }

@@ -1,11 +1,9 @@
 import {VoyageFormData, VoyagePoint, VoyageState} from './voyage.state';
 import {Action, createAction, createReducer, on, props} from '@ngrx/store';
-import {filterParams, isDuplicateParams, Payload, PayloadAction, useImmer} from '../../core';
+import {isDuplicateParams, Payload, PayloadAction, useImmer} from '../../core';
 import {Voyage} from '../../models/voyages';
 import {VoyageParams} from './voyage.params';
 import {Rest} from '../../models/rest.interface';
-import keyBy from 'lodash/keyBy';
-import union from 'lodash/union';
 
 export const voyageFormIdChanged = createAction('[Voyage] FormIdChanged', props<Payload<number|string>>());
 export const submitVoyageForm = createAction('[Voyage] SubmitForm', props<Payload<VoyageFormData>>());

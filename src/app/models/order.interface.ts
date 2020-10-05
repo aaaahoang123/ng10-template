@@ -5,7 +5,7 @@ import {IOrderDetail} from './order-detail.interface';
 import {IPickupLocation} from './pickup-location.interface';
 import {IGetoffLocation} from './getoff-location.interface';
 import {OrderOrigin} from '../modules/orders/orders-list.params';
-import {IVehicleSeat} from './vehicle-seat.interface';
+import {VehicleSeat} from './vehicle-seat.interface';
 
 export interface IOrder {
   addition_price: number;
@@ -34,7 +34,7 @@ export interface IOrder {
   order_details_count: number;
   origin: OrderOrigin;
   origin_title: string;
-  seats: IVehicleSeat[];
+  seats: VehicleSeat[];
 
   isEditing: boolean;
   isDeleting: boolean;

@@ -8,6 +8,7 @@ import {AuthEffects} from './modules/auth/auth.effects';
 import {regionReducer} from './modules/region/region.reducer';
 import {voyageReducer} from './modules/voyage/voyge.reducer';
 import {AppEffects} from './app.effects';
+import {vehicleCategoryReducer} from './modules/vehicle-category/vehicle-category.reducer';
 
 @NgModule({
   declarations: [],
@@ -15,7 +16,8 @@ import {AppEffects} from './app.effects';
     StoreModule.forRoot({
       auth: authReducer,
       region: regionReducer,
-      voyage: voyageReducer
+      voyage: voyageReducer,
+      vehicleCategory: vehicleCategoryReducer
     }),
     EffectsModule.forRoot([AppEffects, AuthEffects]),
     StoreDevtoolsModule.instrument({

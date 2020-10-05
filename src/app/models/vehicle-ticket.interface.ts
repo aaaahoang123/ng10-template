@@ -1,13 +1,13 @@
-import { IVehicleCategory } from './vehicle-category.interface';
+import { VehicleCategory } from './vehicle-category.interface';
 import { Voyage } from './voyages';
-export interface IVehicleTicket {
+export interface VehicleTicket {
   id: number;
   name: string;
   price: number;
   price_pretty: string;
   quantity: number;
   vehicle_category_id: number;
-  vehicle_category: IVehicleCategory;
+  vehicle_category: VehicleCategory;
   voyage_id: number;
   voyage: Voyage;
   created_at: string;

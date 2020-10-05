@@ -1,12 +1,12 @@
-import { IVehicle } from './vehicle.interface';
+import { Vehicle } from './vehicle.interface';
 import { Voyage } from './voyages';
 import { User } from './user.interface';
-import {IVehicleTicket} from './vehicle-ticket.interface';
+import {VehicleTicket} from './vehicle-ticket.interface';
 import {IPickupLocation} from './pickup-location.interface';
 import {IGetoffLocation} from './getoff-location.interface';
 import {IOrder} from './order.interface';
-import {IVehicleCategory} from './vehicle-category.interface';
-import {IVehicleSeat} from './vehicle-seat.interface';
+import {VehicleCategory} from './vehicle-category.interface';
+import {VehicleSeat} from './vehicle-seat.interface';
 
 export enum ScheduleType {
   FOR_ADMIN = 1,
@@ -17,7 +17,7 @@ export interface ISchedules {
   color_type: 'success' | 'error' | 'info';
   id: number;
   vehicle_id: number;
-  vehicle: IVehicle;
+  vehicle: Vehicle;
   voyage_id: number;
   voyage: Voyage;
   voyages: Voyage[];
@@ -32,15 +32,15 @@ export interface ISchedules {
   status: number;
   status_title: string;
   vehicle_category_id: number;
-  vehicle_category: IVehicleCategory;
+  vehicle_category: VehicleCategory;
   type: ScheduleType;
   type_title: string;
 
   pick_up_locations?: IPickupLocation[];
   get_off_locations?: IGetoffLocation[];
-  tickets?: IVehicleTicket[];
+  tickets?: VehicleTicket[];
   orders?: IOrder[];
-  seat_arr?: IVehicleSeat[];
+  seat_arr?: VehicleSeat[];
 
   selected_ticket: number;
 

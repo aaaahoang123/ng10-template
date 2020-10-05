@@ -1,14 +1,14 @@
-import {IVehicleCategory} from './vehicle-category.interface';
+import {VehicleCategory} from './vehicle-category.interface';
 import {IMaintenanceTrack} from './maintenance-track.interface';
 
-export interface IVehicle {
+export interface Vehicle {
   id: number;
   name: string;
   plate: string;
   color: string;
   last_maintenance: string;
   vehicle_category_id;
-  vehicle_category: IVehicleCategory;
+  vehicle_category: VehicleCategory;
   created_at: string;
   updated_at: string;
   status: number;

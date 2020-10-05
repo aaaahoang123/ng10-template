@@ -1,6 +1,6 @@
 import {CommonStatus} from '../enums/common-status.enum';
 
-export interface IVehicleSeat {
+export interface VehicleSeat {
   addition_price: number;
   addition_price_pretty: string;
   created_at: string;

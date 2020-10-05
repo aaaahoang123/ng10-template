@@ -1,28 +1,24 @@
-import {IVehicleTicket} from './vehicle-ticket.interface';
-import {IVehicle} from './vehicle.interface';
-import {IVehicleSeat} from './vehicle-seat.interface';
+import {VehicleTicket} from './vehicle-ticket.interface';
+import {Vehicle} from './vehicle.interface';
+import {VehicleSeat} from './vehicle-seat.interface';
+import {CommonStatus} from '../common/enum/common-status';
 
-export enum VehicleCategoryStatus {
-  Active = 1,
-  Inactive = -1
-}
-
-export interface IVehicleCategory {
+export interface VehicleCategory {
   created_at: string;
   id: number;
   name: string;
   seat_quantity: number;
-  status: VehicleCategoryStatus;
+  status: CommonStatus;
   status_title: string;
   updated_at: string;
 
   vehicles_count?: number;
-  vehicles?: IVehicle[];
+  vehicles?: Vehicle[];
 
   tickets_count?: number;
-  tickets?: IVehicleTicket[];
+  tickets?: VehicleTicket[];
 
-  vehicle_seats: IVehicleSeat[];
+  vehicle_seats: VehicleSeat[];
 
   isDeleting: boolean;
 }

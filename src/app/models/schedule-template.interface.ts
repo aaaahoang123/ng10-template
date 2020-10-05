@@ -1,5 +1,5 @@
 import {Voyage} from './voyages';
-import {IVehicleCategory} from './vehicle-category.interface';
+import {VehicleCategory} from './vehicle-category.interface';
 import {ISchedules} from './schedules.interface';
 
 export interface IScheduleTemplate {
@@ -7,7 +7,7 @@ export interface IScheduleTemplate {
     voyage_id: number;
     voyage?: Voyage;
     vehicle_category_id: number;
-    vehicle_category: IVehicleCategory;
+    vehicle_category: VehicleCategory;
     start_time_offset: number;
     start_time_offset_str: string;
     end_time_offset: number;

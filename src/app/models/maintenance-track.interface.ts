@@ -6,7 +6,7 @@
  */
 import {IMaintenancePlan} from './maintenance-plan.interface';
 import {User} from './user.interface';
-import {IVehicle} from './vehicle.interface';
+import {Vehicle} from './vehicle.interface';
 
 export enum MaintenanceTrackStatus {
   TRACKING = 1,
@@ -28,7 +28,7 @@ export interface IMaintenanceTrack {
   updated_at: string;
   user: User;
   user_id: number;
-  vehicle: IVehicle;
+  vehicle: Vehicle;
   vehicle_id: number;
 
   isRequesting: boolean;
