@@ -14,7 +14,7 @@ export class HttpClientInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(
       req.clone({
-        setHeaders: getAuth()
+        setHeaders: getAuth(!(req.body instanceof FormData))
       })
     ).pipe(
       catchError((err) => {

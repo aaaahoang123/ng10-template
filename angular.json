@@ -37,7 +37,8 @@
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
-              "lodash"
+              "lodash",
+              "@ant-design/colors"
             ]
           },
           "configurations": {

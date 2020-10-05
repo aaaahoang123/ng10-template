@@ -1,0 +1,27 @@
+<div class="clearfix">
+  <nz-upload
+    class="temp-fix-style-img-upload"
+    [nzAction]="nzAction"
+    [nzListType]="nzListType"
+    [(nzFileList)]="fileList"
+    [nzShowButton]="!maxSize || (fileList.length < maxSize)"
+    [nzPreview]="handlePreview"
+    [nzTransformFile]="beforeUpload"
+    [nzName]="nzName"
+    [nzData]="nzData"
+    (nzChange)="onUploadImage($event)"
+  >
+    <i nz-icon nzType="plus"></i>
+    <div class="ant-upload-text">Upload</div>
+  </nz-upload>
+</div>
+
+<nz-modal [nzVisible]="previewVisible"
+          [nzContent]="modalContent"
+          [nzFooter]="null"
+          (nzOnCancel)="onCancelPreview()"
+>
+  <ng-template #modalContent>
+    <img [src]="previewImage" class="w-100" />
+  </ng-template>
+</nz-modal>

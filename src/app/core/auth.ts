@@ -1,11 +1,14 @@
 import {environment} from '../../environments/environment';
 
-export function getAuth(): any {
-  return {
+export function getAuth(contentTypeJson = true): any {
+  const result: any = {
     authorization: localStorage.getItem(environment.authStorageKey) || '',
-    'Content-Type': 'application/json',
     Accept: 'application/json'
-  };
+  }
+  if (contentTypeJson) {
+    result['Content-Type'] = 'application/json';
+  }
+  return result;
 }
 
 export function logout(): void {

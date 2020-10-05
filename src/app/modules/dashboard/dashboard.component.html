@@ -16,3 +16,10 @@
   [nzFormatter]="formatter"
   [nzParser]="parser"
 ></nz-input-number>
+
+<app-upload [(ngModel)]="testUpload"
+            (ngModelChange)="logUpload($event)"
+            [pathToUrl]="pathToUrl"
+            [compressRatio]=".8"
+            [maxImageWidth]="1000"
+></app-upload>

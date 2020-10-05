@@ -3,8 +3,9 @@ import { DashboardComponent } from './dashboard.component';
 import {SharedModule} from '../shared/shared.module';
 import {RouterModule, Routes} from '@angular/router';
 import {RouterEnum} from '../../core';
-import {InputNumberModule} from '../../common/input-number/input-number.module';
 import {NzInputNumberModule} from 'ng-zorro-antd/input-number';
+import {UploadModule} from '../../common/upload/upload.module';
+import {InputNumberModule} from '../../common/input-number/input-number.module';
 
 const {} = RouterEnum;
 
@@ -18,7 +19,8 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes),
     InputNumberModule,
-    NzInputNumberModule
+    NzInputNumberModule,
+    UploadModule
   ]
 })
 export class DashboardModule { }
