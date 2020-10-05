@@ -1,2 +1,18 @@
 <p>dashboard works!</p>
 <!--<app-voyage-selector [(ngModel)]="testVoyage"></app-voyage-selector>-->
+<app-input-number
+  [(ngModel)]="testVoyage"
+  [nzMin]="1"
+  [nzMax]="1000000000"
+  [nzStep]="1"
+  [nzFormatter]="formatter"
+  [nzParser]="parser"
+></app-input-number>
+<nz-input-number
+  [(ngModel)]="testVoyage"
+  [nzMin]="1"
+  [nzMax]="1000000000"
+  [nzStep]="1"
+  [nzFormatter]="formatter"
+  [nzParser]="parser"
+></nz-input-number>

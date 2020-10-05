@@ -7,7 +7,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./dashboard.component.less']
 })
 export class DashboardComponent implements OnInit {
-  testVoyage: any;
+  testVoyage: any = null;
+  formatter = value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  parser = value => value.replace(/\$\s?|(,*)/g, '');
 
   constructor(private readonly router: Router) { }
 
