@@ -5,19 +5,26 @@ import {StateStatus} from '../../common/enum/state-status';
 import {Dictionary} from '@ngrx/entity';
 import {VehicleCategory} from '../../models/vehicle-category.interface';
 import {VehicleCategoryParams} from './vehicle-category.params';
+import {Expose, Type} from 'class-transformer';
 
 export class VehicleSeatForm {
+  @Expose()
   id: number = null;
 
   @UseValidators([Validators.required, Validators.min(0)])
+  @Expose()
   // tslint:disable-next-line:variable-name
   p_col: number;
 
   @UseValidators([Validators.required, Validators.min(0)])
+  @Expose()
   // tslint:disable-next-line:variable-name
   p_row: number;
 
+  @Expose()
   selectable = true;
+
+  @Expose()
   // tslint:disable-next-line:variable-name
   addition_price: number = null;
 
@@ -29,14 +36,21 @@ export class VehicleSeatForm {
 
 export class VehicleCategoryForm {
   @UseValidators([Validators.required])
+  @Expose()
   name: string = null;
 
   @UseValidators([Validators.required, Validators.min(1)])
+  @Expose()
   // tslint:disable-next-line:variable-name
   seat_quantity = 12;
 
+  cols = 3;
+  rows = 4;
+  @Expose()
   status: CommonStatus = null;
 
+  @Type(() => VehicleSeatForm)
+  @Expose()
   // tslint:disable-next-line:variable-name
   vehicle_seats: VehicleSeatForm[] = [
     {...new VehicleSeatForm()}

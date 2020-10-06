@@ -7,18 +7,18 @@
 <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
   <ng-container *ngFor="let config of router.config">
     <ng-template [ngTemplateOutlet]="menuRender"
-                 [ngTemplateOutletContext]="{route: config, prefix: ''}"
+                 [ngTemplateOutletContext]="{route: config, prefix: '', level: 1}"
     ></ng-template>
   </ng-container>
 
 
-  <ng-template #menuRender let-route="route" let-prefix="prefix">
+  <ng-template #menuRender let-route="route" let-prefix="prefix" let-level="level">
     <ng-container *ngIf="route.data?.display">
 
       <ng-container *ngIf="route.data?.menuType === MenuType.NONE && (route.children?.length || route._loadedConfig?.routes?.length)">
           <ng-template ngFor let-child [ngForOf]="route.children || route._loadedConfig?.routes">
             <ng-template [ngTemplateOutlet]="menuRender"
-                         [ngTemplateOutletContext]="{route: child, prefix: prefix + (route.path ? ('/' + route.path) : '')}"
+                         [ngTemplateOutletContext]="{route: child, prefix: prefix + (route.path ? ('/' + route.path) : ''), level: level}"
             ></ng-template>
           </ng-template>
 
@@ -29,11 +29,12 @@
             nzOpen
             [nzTitle]="route?.data?.title"
             [nzIcon]="route?.data?.icon || ''"
+            [nzPaddingLeft]="level * 24"
         >
           <ul>
             <ng-template ngFor let-child [ngForOf]="route.children || route._loadedConfig?.routes">
               <ng-template [ngTemplateOutlet]="menuRender"
-                           [ngTemplateOutletContext]="{route: child, prefix: prefix + (route.path ? ('/' + route.path) : '')}"
+                           [ngTemplateOutletContext]="{ route: child, prefix: prefix + (route.path ? ('/' + route.path) : ''), level: level + 1 }"
               ></ng-template>
             </ng-template>
           </ul>
@@ -43,6 +44,7 @@
       <ng-container *ngIf="!route.data?.menuType || route.data?.menuType === MenuType.ITEM">
         <li nz-menu-item
             nzMatchRouter
+            [nzPaddingLeft]="level * 24"
         >
           <i *ngIf="route.data?.icon" [nzType]="route.data?.icon" nz-icon></i>
           <span><a [routerLink]="prefix + (route.path ? ('/' + route.path) : '')">{{route.data?.title || ''}}</a></span>

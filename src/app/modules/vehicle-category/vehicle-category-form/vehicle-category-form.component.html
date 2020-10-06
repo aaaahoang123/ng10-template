@@ -1,1 +1,158 @@
-<p>vehicle-category-form works!</p>
+<section nz-row nzType="flex" nzJustify="center">
+  <div nz-col [nzXs]="24">
+    <!--[formGroup]="inputForm"-->
+    <form nz-form
+          [nzLayout]="'vertical'"
+          [formGroup]="form"
+          (ngSubmit)="doSubmit()"
+          class="w-100"
+          [appConnectedForm]="formData$"
+          [changeAction]="vehicleCategoryFormChanged"
+    >
+      <div nz-row nzGutter="6">
+
+        <div nz-col [nzXs]="24" [nzMd]="12" *ngIf="form.get('name') as name">
+          <nz-form-item>
+            <nz-form-label>Tên nhóm xe <b class="color-danger">*</b></nz-form-label>
+            <nz-form-control nzErrorTip="Hãy nhập tên nhóm">
+              <input nz-input formControlName="name" placeholder="Nhập tên nhóm">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col [nzXs]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label>Số chỗ ngồi <b class="color-danger">*</b></nz-form-label>
+            <nz-form-control nzErrorTip="Hãy nhập số chỗ ngồi (tối thiểu là 1)">
+              <app-input-number formControlName="seat_quantity"
+                                [nzMin]="1"
+                                [nzStep]="1"
+                                nzPlaceHolder="Số chỗ ngồi"
+                                class="w-100"
+              ></app-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <ng-container *ngrxLet="formId$; let formId">
+          <div nz-col [nzXs]="24" *ngIf="formId">
+            <nz-form-item>
+              <nz-form-label>Trạng thái</nz-form-label>
+              <nz-form-control>
+                <app-status-selector formControlName="status"
+                                     [status]="CommonStatus"
+                                     enumName="CommonStatus"
+                ></app-status-selector>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </ng-container>
+
+        <div nz-col [nzXs]="24" nzMd="12">
+          <nz-form-item>
+            <nz-form-label>Số dãy</nz-form-label>
+            <nz-form-control>
+              <app-input-number formControlName="cols"
+                                (ngModelChange)="onColChange($event)"
+                                nzPlaceHolder="Nhập số cột"
+                                class="w-100"
+                                [nzMin]="1"
+              ></app-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col [nzXs]="24" nzMd="12">
+          <nz-form-item>
+            <nz-form-label>Số hàng</nz-form-label>
+            <nz-form-control nzErrorTip="Hãy nhập số hàng">
+              <app-input-number formControlName="rows"
+                                (ngModelChange)="onSeatGridChange()"
+                                nzPlaceHolder="Nhập số hàng"
+                                [nzMin]="1"
+                                class="w-100"
+              ></app-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col [nzXs]="24" formArrayName="vehicle_seats">
+          <div nz-row [nzGutter]="4" *ngFor="let row of form.get('rows').value | range">
+            <div nz-col
+                 nzFlex="1"
+                 class="mb-2"
+                 *ngFor="let column of form.get('cols').value | range"
+            >
+              <ng-container *ngIf="form.get(['vehicle_seats', column + row * form.get('cols').value]) as seatForm">
+                <nz-card class="seat-grid-item">
+                  <section nz-row nzJustify="center">
+                    <!--[formGroup]="inputForm"-->
+                    <form nz-form [formGroup]="seatForm" [nzLayout]="'vertical'" class="w-100">
+                      <div nz-col [nzXs]="24">
+                        <b>Ghế {{seatForm?.get('p_row').value + 1}}.{{seatForm?.get('p_col').value + 1}}</b>
+                      </div>
+                      <div nz-col [nzXs]="24" class="mb-1">
+                        <label nz-checkbox formControlName="selectable">
+                          <span>Có thể chọn</span>
+                        </label>
+                      </div>
+
+                      <div nz-col [nzXs]="24" class="mb-1">
+                        <app-input-number formControlName="addition_price"
+                                          nzPlaceHolder="Thêm giá"
+                                          nzSize="small"
+                                          class="w-100"
+                                          [nzFormatter]="numberFormatter"
+                        ></app-input-number>
+                      </div>
+
+                    </form>
+                  </section>
+                </nz-card>
+              </ng-container>
+            </div>
+<!--            <ng-container *ngFor="let seatForm of (form | getAsFormArray:'vehicle_seats').controls; let index = i">-->
+<!--              <div class="mb-2"-->
+<!--                   nz-col-->
+<!--                   [nzXs]="seatGridColumn"-->
+<!--              >-->
+
+
+<!--                &lt;!&ndash;            <ng-container *ngFor="let col of row">&ndash;&gt;-->
+<!--                &lt;!&ndash;              <div nz-col [nzXs]="largesMultiplesOfCols / cols">&ndash;&gt;-->
+<!--                &lt;!&ndash;                <ng-container [ngTemplateOutlet]="itemTemplate || defaultGridItem"&ndash;&gt;-->
+<!--                &lt;!&ndash;                              [ngTemplateOutletContext]="{$implicit: col}"&ndash;&gt;-->
+<!--                &lt;!&ndash;                ></ng-container>&ndash;&gt;-->
+<!--                &lt;!&ndash;                &lt;!&ndash;<app-vehicle-seat-form [control]="col"></app-vehicle-seat-form>&ndash;&gt;&ndash;&gt;-->
+<!--                &lt;!&ndash;              </div>&ndash;&gt;-->
+<!--                &lt;!&ndash;            </ng-container>&ndash;&gt;-->
+<!--              </div>-->
+<!--            </ng-container>-->
+          </div>
+        </div>
+
+        <!--        <div nz-col [nzXs]="24">-->
+        <!--          <app-vehicle-seat-grid-list [datas]="form.get('vehicle_seats')"-->
+        <!--                                      [seats]="data?.vehicle_seats"-->
+        <!--          ></app-vehicle-seat-grid-list>-->
+        <!--        </div>-->
+
+        <div nz-col [nzXs]="24" *ngrxLet="loading$; let loading">
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button
+                      nzType="primary"
+                      class="w-100"
+                      [nzLoading]="loading"
+              >
+                <i nz-icon nzType="save"></i> Lưu
+              </button>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+</section>

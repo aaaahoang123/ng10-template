@@ -11,6 +11,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient} from '@angular/common/http';
 import { CommonStatusLabelComponent } from './components/common-status-label/common-status-label.component';
 import {NzBadgeModule} from 'ng-zorro-antd/badge';
+import { RangePipe } from './pipe/range.pipe';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
@@ -30,7 +31,8 @@ const declarations = [
   GetAsFormArrayPipe,
   StatusSelectorComponent,
   EnumToSelectEntriesPipe,
-  CommonStatusLabelComponent
+  CommonStatusLabelComponent,
+  RangePipe
 ];
 
 @NgModule({

@@ -26,23 +26,23 @@ export class VehicleCategoryService {
 
   delete(id: number): Observable<Rest<VehicleCategory>> {
     return this.http.delete<Rest<VehicleCategory>>(
-      `${environment.baseUrl}vehicles/delete-category`,
+      `${environment.baseUrl}/vehicles/delete-category`,
       {params: {id} as any}
     );
   }
 
   single(id: number): Observable<Rest<VehicleCategory>> {
     return this.http.get<Rest<VehicleCategory>>(
-      `${environment.baseUrl}vehicles/single-category`,
+      `${environment.baseUrl}/vehicles/single-category`,
       {params: {id} as any}
     );
   }
 
   create(value: VehicleCategoryForm): Observable<Rest<VehicleCategory>> {
-    return this.http.post<Rest<VehicleCategory>>(`${environment.baseUrl}vehicles/create-category`, value);
+    return this.http.post<Rest<VehicleCategory>>(`${environment.baseUrl}/vehicles/create-category`, value);
   }
 
   edit(id: number, value: VehicleCategoryForm): Observable<Rest<VehicleCategory>> {
-    return this.http.put<Rest<VehicleCategory>>(`${environment.baseUrl}vehicles/edit-category`, {...value, id});
+    return this.http.put<Rest<VehicleCategory>>(`${environment.baseUrl}/vehicles/edit-category`, {...value, id});
   }
 }

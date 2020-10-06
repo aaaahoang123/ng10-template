@@ -34,7 +34,7 @@ export class VoyageListSearchBarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     let initialParams = this.activatedRoute.snapshot.queryParams;
-    if (!Object.keys(initialParams).length) {
+    if (!Object.keys(initialParams ?? {}).length) {
       initialParams = null;
     }
     this.store.dispatch(voyageParamsChange({payload: initialParams, extra: true}));

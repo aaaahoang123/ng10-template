@@ -1,1 +1,14 @@
-<p>vehicle-category-selector works!</p>
+<nz-select nzPlaceHolder="Chọn nhóm xe"
+           class="w-100"
+           [(ngModel)]="model"
+           [nzMode]="nzMode"
+           (ngModelChange)="onModelChange($event)"
+           [nzDisabled]="isDisabled"
+           [nzAllowClear]="nzAllowClear"
+           *ngrxLet="datas$; let datas"
+>
+  <nz-option *ngFor="let category of datas"
+             [nzValue]="category.id"
+             [nzLabel]="category.name"
+  ></nz-option>
+</nz-select>

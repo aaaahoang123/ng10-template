@@ -48,4 +48,5 @@ export enum RouterEnum {
   export_xls = 'export-xls',
   refunds = 'refunds',
   calling_phone = 'calling-phone',
+  vehicle_categories = 'vehicle-categories'
 }

@@ -7,11 +7,12 @@
 
 export * from './http-client.interceptor';
 export * from './auth';
-export * from './download-file';
+export * from './utils/download-file';
 export * from './objects';
 export * from './merge-with-default';
 export * from './form';
 export * from './stores';
 export * from './router.enum';
-export * from './simple-control-value-accessor';
+export * from './components/simple-control-value-accessor';
 export * from './is-duplicate-params';
+export * from './components/auto-sync-router';

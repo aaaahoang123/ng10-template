@@ -4,6 +4,7 @@ import {WithSidebarLayoutComponent} from './layouts/with-sidebar-layout/with-sid
 import {MiddleContentLayoutComponent} from './layouts/middle-content-layout/middle-content-layout.component';
 import {AuthGuard} from './modules/auth/auth.guard';
 import {MenuType} from './layouts/menu-type';
+import {RouterEnum} from './core';
 
 const routes: Routes = [
   {
@@ -43,13 +44,24 @@ const routes: Routes = [
         }
       },
       {
-        path: 'voyages',
+        path: RouterEnum.voyages,
         // component: RouterOutlet,
         loadChildren: () => import('./modules/voyage/voyage.module').then(m => m.VoyageModule),
         data: {
           display: true,
           icon: 'ordered-list',
           title: 'Tuyến đường',
+          menuType: MenuType.SUBMENU
+        }
+      },
+      {
+        path: RouterEnum.vehicle_categories,
+        loadChildren: () => import('./modules/vehicle-category/vehicle-category.module').then(m => m.VehicleCategoryModule),
+        canActivate: [AuthGuard],
+        data: {
+          display: true,
+          icon: 'group',
+          title: 'Nhóm xe',
           menuType: MenuType.SUBMENU
         }
       }
